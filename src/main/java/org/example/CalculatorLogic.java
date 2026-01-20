@@ -2,10 +2,11 @@ package org.example;
 
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Font;
 
 public class CalculatorLogic {
 
-    private double fnum = 0;
+    private double firstNum = 0;
     private String operator = "";
     private boolean start = true;
 
@@ -20,40 +21,41 @@ public class CalculatorLogic {
         } else if (value.equals("C")) {
             display.setText("0");
             historyDisplay.setText("");
-            fnum = 0;
+            firstNum = 0;
             operator = "";
             start = true;
         } else if (value.equals("=")) {
             if (operator.isEmpty()) return;
             double snum = Double.parseDouble(display.getText());
-            historyDisplay.setText(formatNumber(fnum) + " " + operator + " " + formatNumber(snum) + " =");
+            historyDisplay.setText(formatNumber(firstNum) + " " + operator + " " + formatNumber(snum) + " =");
             calculate(snum, display, historyDisplay);
             operator = "";
             start = true;
         } else {
-            fnum = Double.parseDouble(display.getText());
+            firstNum = Double.parseDouble(display.getText());
             operator = value;
-            historyDisplay.setText(formatNumber(fnum) + " " + operator);
+            historyDisplay.setText(formatNumber(firstNum) + " " + operator);
             start = true;
         }
     }
 
-    private void calculate(double snum, TextField display, Label historyDisplay) {
+    private void calculate(double secondNum, TextField display, Label historyDisplay) {
         try {
             switch (operator) {
-                case "+" -> fnum += snum;
-                case "-" -> fnum -= snum;
-                case "*" -> fnum *= snum;
+                case "+" -> firstNum += secondNum;
+                case "-" -> firstNum -= secondNum;
+                case "*" -> firstNum *= secondNum;
                 case "/" -> {
-                    if (snum == 0) throw new ArithmeticException();
-                    fnum /= snum;
+                    if (secondNum == 0) throw new ArithmeticException();
+                    firstNum /= secondNum;
                 }
             }
-            display.setText(formatNumber(fnum));
+            display.setText(formatNumber(firstNum));
+
         } catch (ArithmeticException e) {
-            display.setText("Cannot divide by zero");
+            display.setText("Cannot divide by 0");
             historyDisplay.setText("");
-            fnum = 0;
+            firstNum = 0;
             operator = "";
         }
     }

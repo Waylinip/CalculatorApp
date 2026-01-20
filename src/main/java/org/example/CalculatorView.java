@@ -52,12 +52,12 @@ public class CalculatorView {
     private static Button createButton(String text, Consumer<String> onClick) {
         Button btn = new Button(text);
         btn.setMinSize(78, 60);
-        btn.setFont(Font.font("Segoe UI", 18));
+        btn.setFont(Font.font("Segoe UI", 15));
 
         if (Character.isDigit(text.charAt(0))) {
             btn.setStyle("-fx-background-color: #ffffff; -fx-border-color: #dcdcdc;");
         } else if (text.equals("=")) {
-            btn.setStyle("-fx-background-color: #0078d7; -fx-text-fill: white;");
+            btn.setStyle("-fx-background-color: #de550d; -fx-text-fill: white;");
         } else {
             btn.setStyle("-fx-background-color: #f3f3f3; -fx-border-color: #dcdcdc;");
         }

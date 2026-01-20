@@ -9,6 +9,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+//mvn javafx:run
+
 public class CalculatorApp extends Application {
 
     private CalculatorLogic logic = new CalculatorLogic();
